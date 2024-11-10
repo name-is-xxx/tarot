@@ -1,0 +1,33 @@
+.button {
+  border: 2px solid black;
+  transition: all 0.2s ease;
+}
+.primary {
+  background-color: blueviolet;
+  color: blanchedalmond;
+}
+
+.primary:hover {
+  background-color: red;
+  color: blanchedalmond;
+}
+
+.danger {
+  background-color: red;
+  color: blanchedalmond;
+}
+
+.danger:hover {
+  background-color: red;
+  color: blanchedalmond;
+}
+
+.warning {
+  background-color: orange;
+  color: blanchedalmond;
+}
+
+.warning:hover {
+  background-color: orange;
+  color: blanchedalmond;
+}
