@@ -1,10 +1,14 @@
 import "./App.css";
-import { Button } from "./components/index";
+import { Button, Carousel } from "./components/index";
 
 function App() {
   return (
     <>
-      <Button type="primary">123</Button>
+      <Button type="primary">mystery</Button>
+      <Button type="mystery">mystery</Button>
+      <Button type="danger">mystery</Button>
+      <Button type="warning">mystery</Button>
+      <Carousel />
     </>
   );
 }

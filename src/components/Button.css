@@ -1,0 +1,52 @@
+.button {
+  color: blanchedalmond;
+  margin: 10px;
+  position: relative;
+  padding: 5px 15px;
+  border: 0;
+  border: 5px groove;
+  box-shadow: 0 2px 2px rgba(128, 128, 128, 0.7);
+  transition: all 0.2s ease;
+}
+.button:hover {
+  border: 5px ridge;
+  color: blanchedalmond;
+}
+.mystery {
+  border-color: blueviolet;
+  background-color: blueviolet;
+}
+
+.mystery:hover {
+  border-color: blueviolet;
+  background-image: linear-gradient(135deg, #561b8e, blueviolet);
+}
+
+.primary {
+  border-color: #2196f3;
+  background-color: #2196f3;
+}
+
+.primary:hover {
+  border-color: #2196f3;
+}
+
+.danger {
+  border-color: red;
+  background-color: red;
+}
+
+.danger:hover {
+  border-color: red;
+  background-image: linear-gradient(135deg, #ab0000, red);
+}
+
+.warning {
+  border-color: orange;
+  background-color: orange;
+}
+
+.warning:hover {
+  border-color: orange;
+  background-image: linear-gradient(135deg, #ab6e00, orange);
+}
