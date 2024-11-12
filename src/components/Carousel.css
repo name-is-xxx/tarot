@@ -1,0 +1,16 @@
+.circle {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: black;
+  width: 15px;
+  height: 15px;
+  /* background: yellow; */
+  display: block;
+  border-radius: 50%;
+  opacity: 0.5;
+  float: left;
+  margin-right: 5px;
+  cursor: pointer;
+}

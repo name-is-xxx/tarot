@@ -1,19 +1,34 @@
 import PropTypes from "prop-types";
+import "./Carousel.css";
 
 const Carousel = ({ width, height, urlList }) => {
   return (
     <>
       <div>
-        <ul>
+        <ul style={{ width: width, height: height, overflow: "hidden" }}>
           {urlList.length !== 0 &&
             urlList.map((item, index) => {
               return (
-                <li key={index}>
-                  <img width={width} height={height} src={item} alt="" />
+                <li
+                  key={index}
+                  id={index}
+                  style={{ width: width, height: height }}
+                >
+                  <img
+                    style={{
+                      maxWidth: width,
+                      maxHeight: height,
+                      objectFit: "contain",
+                      textAlign: "center",
+                    }}
+                    src={item}
+                    alt=""
+                  />
                 </li>
               );
             })}
         </ul>
+        <div className="circle"></div>
       </div>
     </>
   );
