@@ -8,6 +8,22 @@ on:
   push:
     branches: ["main"]
 
+  # 支持手动在工作流上触发
+  workflow_dispatch:
+  # 权限设置
+permissions:
+  # 允许读取仓库内容的权限
+  contents: read
+  # 允许写入GitHub Pages的权限
+  pages: write
+  # 允许写入id-token的权限
+  id-token: write
+
+# 并发控制配置
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   # Build job
   build:
