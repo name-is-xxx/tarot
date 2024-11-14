@@ -1,0 +1,80 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+
+name: Tarot web
+
+on:
+  # 代码推送到main时触发
+  push:
+    branches: ["main"]
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 获取GitHub库中代码
+      - name: Checkout
+        uses: actions/checkout@v4
+      # 检测项目使用的包管理器
+      - name: Detect package manager
+        id: detect-package-manager
+        shell: bash
+        run: |
+          if [-f '${{github.workspace}}/yarn.lock']; then
+            echo 'manager=yarn'>>$GITHUB_OUTPUT
+            echo 'command=install'>>$GITHUB_OUTPUT
+            echo 'runner=yarn'>>$GITHUB_OUTPUT
+            exit 0
+          elif [ -f "${{ github.workspace }}/package.json" ]; then
+            echo "manager=npm" >> $GITHUB_OUTPUT
+            echo "command=ci" >> $GITHUB_OUTPUT
+            echo "runner=npm run" >> $GITHUB_OUTPUT
+            exit 0
+          else
+            echo "Unable to determine package manager"
+            exit 1
+          fi
+      # 设置Node.js环境
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ">=20.12.0"
+          cache: ${{ steps.detect-package-manager.outputs.manager }}
+      # 安装依赖
+      - name: Install dependencies
+        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+      # 构建
+      - name: Build with React.js
+        run: ${{ steps.detect-package-manager.outputs.runner }} build
+      # 打包构建生成的项目文件
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: react-build
+          path: build/
+
+  # 部署 Deployment job
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    # steps:
+    #   - name: Deploy to GitHub Pages
+    #     id: deployment
+    #     uses: actions/deploy-pages@v4
+    steps:
+    - name: Download build artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: react-build
+        path: build/
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: build
