@@ -16,7 +16,7 @@ function App() {
       <Button type="mystery">mystery</Button>
       <Button type="danger">mystery</Button>
       <Button type="warning">mystery</Button>
-      <Carousel urlList={imgList} />
+      <Carousel width={400} className="carousel" urlList={imgList} />
     </>
   );
 }
