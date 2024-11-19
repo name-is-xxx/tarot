@@ -1,16 +1,22 @@
 import PropTypes from "prop-types";
 import "./Carousel.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Carousel = ({ className, width, height, urlList }) => {
   const [curIndex, setCurIndex] = useState(0);
-  setTimeout(() => {
-    if (curIndex < urlList.length - 1) {
-      setCurIndex(curIndex + 1);
-    } else {
-      setCurIndex(0);
-    }
-  }, 5000);
+
+  useEffect(() => {
+    const distance = setInterval(() => {
+      if (curIndex < urlList.length - 1) {
+        setCurIndex(curIndex + 1);
+      } else {
+        setCurIndex(0);
+      }
+    }, 5000);
+    return () => {
+      clearInterval(distance);
+    };
+  }, [curIndex, urlList]);
   return (
     <>
       <div
@@ -21,7 +27,13 @@ const Carousel = ({ className, width, height, urlList }) => {
         }}
         className={`${className}`}
       >
-        <span className="re" style={{ width: Math.floor(width / 10) }}>
+        <span
+          className="re"
+          onClick={() => {
+            setCurIndex((curIndex - 1 + urlList.length) % urlList.length);
+          }}
+          style={{ width: Math.floor(width / 10) }}
+        >
           <svg
             t="1731747985783"
             viewBox="-200 0 1024 1024"
@@ -47,34 +59,48 @@ const Carousel = ({ className, width, height, urlList }) => {
               transform: `translateX(${-width * curIndex}px)`,
             }}
           >
-            {urlList.length !== 0 &&
-              urlList.map((item, index) => {
-                return (
-                  <li
-                    key={index}
-                    id={index}
+            {urlList.map((item, index) => {
+              return (
+                <li
+                  key={index}
+                  id={index}
+                  style={{
+                    width,
+                    height,
+                  }}
+                  className="item"
+                >
+                  <img
                     style={{
-                      width,
-                      height,
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain",
                     }}
-                    className="item"
-                  >
-                    <img
-                      style={{
-                        maxWidth: "100%",
-                        maxHeight: "100%",
-                        objectFit: "contain",
-                      }}
-                      src={item}
-                      alt=""
-                    />
-                  </li>
-                );
-              })}
+                    src={item}
+                    alt=""
+                  />
+                </li>
+              );
+            })}
           </ul>
-          <div className="circle"></div>
+          <div className="circle_group">
+            {urlList.map((_, index) => {
+              return (
+                <div
+                  className={`circle ${index === curIndex && "circle_active"}`}
+                  onClick={() => setCurIndex(index)}
+                ></div>
+              );
+            })}
+          </div>
         </div>
-        <span className="re" style={{ width: Math.floor(width / 10) }}>
+        <span
+          className="re"
+          onClick={() => {
+            setCurIndex((curIndex + 1) % urlList.length);
+          }}
+          style={{ width: Math.floor(width / 10) }}
+        >
           <svg
             t="1731756841031"
             viewBox="200 0 1024 1024"
@@ -99,6 +125,7 @@ Carousel.propTypes = {
   urlList: PropTypes.array,
   width: PropTypes.number,
   height: PropTypes.number,
+  circleColor: PropTypes.array,
 };
 
 Carousel.defaultProps = {

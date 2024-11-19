@@ -9,6 +9,7 @@ function App() {
     "/assets/4.jpg",
     "/assets/5.jpg",
     "/assets/6.jpg",
+    "/assets/光佑此间.jpg",
   ];
   return (
     <>
