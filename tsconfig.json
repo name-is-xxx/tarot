@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",               // 编译输出的 JS 版本
+    "module": "ESNext",               // 使用 ES 模块系统，和 Vite 一致
+    "moduleResolution": "bundler",       // 打包工具用bundler，Node风格用node
+    "jsx": "react-jsx",                // React 17+ 新的 JSX 转换方式
+    "strict": false,                    // 关闭严格模式
+    "baseUrl": "./",                     // 基础路径
+    "paths": {
+      "@/*": ["src/*"]                 // @ 对应 src 文件夹
+    },
+    "isolatedModules": true,            // 每个文件独立编译，Vite 推荐
+    "allowSyntheticDefaultImports": true // 允许默认导入非 ES 模块
+  },
+  "include": ["src"],                   // 指定 TS/TSX 文件所在目录
+}
+

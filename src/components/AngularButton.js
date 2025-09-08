@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import "./Button.css";
+import "./AngularButton.css";
 
 const Button = ({ children, onClick, className, type, disabled }) => {
   return (

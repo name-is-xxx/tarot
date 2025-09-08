@@ -1,12 +1,13 @@
-.carousel {
-  margin: 10px;
-  .circle {
-    background: green;
-  }
-  .circle:hover {
-    background: red;
-  }
-  .circle_active {
-    background: black;
-  }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root[data-mantine-color-scheme="light"] {
+  --mantine-color-body: #fff;
+  --mantine-color-text: #000;
+}
+
+:root[data-mantine-color-scheme="dark"] {
+  --mantine-color-body: #000;
+  --mantine-color-text: #fff;
 }
