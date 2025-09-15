@@ -20,6 +20,6 @@ const route: RouteObject[] = [
   },
 ];
 
-const router = createBrowserRouter(route);
+const router = createBrowserRouter(route, { basename: "/tarot" });
 
 export default router;
