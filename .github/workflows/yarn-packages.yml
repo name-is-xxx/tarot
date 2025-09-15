@@ -42,19 +42,16 @@ jobs:
             echo "manager=yarn" >> $GITHUB_OUTPUT
             echo "command=install" >> $GITHUB_OUTPUT
             echo "runner=yarn" >> $GITHUB_OUTPUT
-            echo "need-setup=true" >> $GITHUB_OUTPUT
             exit 0
           elif [ -f "${{ github.workspace }}/pnpm-lock.yaml" ]; then
             echo "manager=pnpm" >> $GITHUB_OUTPUT
             echo "command=install" >> $GITHUB_OUTPUT
             echo "runner=pnpm run" >> $GITHUB_OUTPUT
-            echo "need-setup=true" >> $GITHUB_OUTPUT
             exit 0
           elif [ -f "${{ github.workspace }}/package-lock.json" ]; then
             echo "manager=npm" >> $GITHUB_OUTPUT
             echo "command=ci" >> $GITHUB_OUTPUT
             echo "runner=npm run" >> $GITHUB_OUTPUT
-            echo "need-setup=false" >> $GITHUB_OUTPUT
             exit 0
           else
             echo "Unable to determine package manager"
@@ -67,15 +64,15 @@ jobs:
           node-version: ">=20.19.0"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
       #安装包管理器
-      - name: Setup package manager
-        if: steps.detect-package-manager.outputs.need-setup == 'true'
-        run: |
-          case "${{ steps.detect-package-manager.outputs.manager }}" in
-          pnpm)
-            npm install -g pnpm ;;
-          yarn)
-            npm install -g yarn ;;
-          esac
+      - name: Setup pnpm
+        if: steps.detect-package-manager.outputs.manager == 'pnpm'
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+          run_install: false
+      - name: Setup yarn
+        if: steps.detect-package-manager.outputs.manager == 'yarn'
+        run: npm install -g yarn
       # 安装依赖
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
