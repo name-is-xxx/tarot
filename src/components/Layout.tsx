@@ -59,7 +59,7 @@ const Layout = () => {
           header={{ height: 60 }}
           navbar={{
             width: 300,
-            breakpoint: "sm",
+            breakpoint: "xs",
             collapsed: { desktop: true, mobile: !opened },
           }}
           className="px-5 lg:px-28"
@@ -67,10 +67,8 @@ const Layout = () => {
           <AppShell.Header>
             <Group h="100%" justify="space-between" className="px-5 lg:px-28">
               <Text>Lynn的网站</Text>
-              <div className="flex items-center gap-3.5">
-                <Group visibleFrom="sm" gap={14}>
-                  {TabList}
-                </Group>
+              <Group visibleFrom="sm" gap={14}>
+                {TabList}
                 <Switch
                   size="md"
                   onLabel={<Sun size={16} />}
@@ -85,7 +83,8 @@ const Layout = () => {
                 {/* <Button variant="white" onClick={() => setColorScheme("light")}>
                   Light
                 </Button> */}
-              </div>
+              </Group>
+
               <Burger
                 opened={opened}
                 onClick={toggle}
@@ -95,17 +94,26 @@ const Layout = () => {
             </Group>
           </AppShell.Header>
 
-          <AppShell.Navbar className="px-5">{TabList}</AppShell.Navbar>
+          <AppShell.Navbar>
+            <div className="h-full flex flex-col items-center justify-center gap-5">
+              {TabList}
+              <Switch
+                size="md"
+                onLabel={<Sun size={16} />}
+                offLabel={<Moon size={16} />}
+                checked={colorScheme === "light"}
+                onClick={() => {
+                  colorScheme === "light"
+                    ? setColorScheme("dark")
+                    : setColorScheme("light");
+                }}
+              />
+            </div>
+          </AppShell.Navbar>
 
-          <AppShell.Main>
-            <Text
-              ta="center"
-              fw={600}
-              className="w-full border-y-2 text-7xl md:text-8xl lg:text-9xl"
-            >
-              THE BLOG
-            </Text>
+          <AppShell.Main className="flex flex-col">
             <Outlet />
+            <div className="py-4 text-center">This is footer</div>
           </AppShell.Main>
         </AppShell>
       </div>
