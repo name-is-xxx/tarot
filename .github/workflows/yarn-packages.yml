@@ -68,11 +68,8 @@ jobs:
         if: steps.detect-package-manager.outputs.manager == 'pnpm'
         uses: pnpm/action-setup@v3
         with:
-          version: 9
+          version: "laster"
           run_install: false
-      - name: Setup yarn
-        if: steps.detect-package-manager.outputs.manager == 'yarn'
-        run: npm install -g yarn
       # 安装依赖
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
