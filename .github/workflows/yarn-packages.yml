@@ -64,12 +64,8 @@ jobs:
           node-version: ">=20.19.0"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
       #安装包管理器
-      - name: Setup pnpm
-        if: steps.detect-package-manager.outputs.manager == 'pnpm'
-        uses: pnpm/action-setup@v3
-        with:
-          version: "laster"
-          run_install: false
+      - name: Enable corepack
+        run: corepack enable
       # 安装依赖
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
