@@ -1,7 +1,7 @@
 import useCountStore from "@/store/countStore";
 import useListStore from "@/store/listStore";
 import { Checkbox, Input, Textarea } from "@mantine/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Home = () => {
   const count = useCountStore((state) => state.count);
@@ -9,12 +9,16 @@ const Home = () => {
   const decCount = useCountStore((state) => state.decCount);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const fetchList = useListStore((state) => state.fetchList);
   const list = useListStore((state) => state.list);
   const addItem = useListStore((state) => state.addItem);
   const delItem = useListStore((state) => state.delItem);
-  const updateItem = useListStore((state) => state.updateItem);
+  // const updateItem = useListStore((state) => state.updateItem);
+  // const randomId = () => Math.floor(Math.random() * 100000);
 
-  const randomId = () => Math.floor(Math.random() * 100000);
+  useEffect(() => {
+    fetchList();
+  }, []);
 
   return (
     <>
@@ -24,13 +28,13 @@ const Home = () => {
       <ul>
         {list.map((item) => (
           <li key={item.id}>
-            <Checkbox
+            {/* <Checkbox
               checked={item.isFinish}
               onChange={() => updateItem(item.id)}
-            ></Checkbox>
+            ></Checkbox> */}
             <p>id:{item.id}</p>
-            <p>id:{item.name}</p>
-            <p>id:{item.content}</p>
+            <p>title:{item.title}</p>
+            <p>content:{item.content}</p>
             <button onClick={() => delItem(item.id)}>delItem</button>
           </li>
         ))}
@@ -52,10 +56,10 @@ const Home = () => {
           type="button"
           onClick={() => {
             addItem({
-              id: Number(randomId()),
-              name: title,
+              // id: Number(randomId()),
+              title: title,
               content: content,
-              isFinish: false,
+              // isFinish: false,
             });
             setTitle("");
             setContent("");

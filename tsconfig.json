@@ -12,6 +12,6 @@
     "isolatedModules": true,            // 每个文件独立编译，Vite 推荐
     "allowSyntheticDefaultImports": true // 允许默认导入非 ES 模块
   },
-  "include": ["src"],                   // 指定 TS/TSX 文件所在目录
+  "include": ["src", "vite-env.d.ts"],                   // 指定 TS/TSX 文件所在目录
 }
 

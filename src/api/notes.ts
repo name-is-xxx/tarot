@@ -1,11 +1,20 @@
 import Request from "@/utils/service";
 
-// 对话
-export function getChat(data: string) {
-  return Request("/api/v1/website/index/chat_identification", {
+export function getNoteList() {
+  return Request<API.list[]>(`/api/notes`, {
+    method: "GET",
+  });
+}
+
+export function getNote(id: number) {
+  return Request(`/api/notes/${id}`, {
+    method: "GET",
+  });
+}
+
+export function addNote(data: Pick<API.list, "title" | "content">) {
+  return Request<API.list>("/api/notes/new", {
     method: "POST",
-    params: {
-      content: data,
-    },
+    data,
   });
 }

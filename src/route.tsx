@@ -1,12 +1,18 @@
+import React, { Suspense } from "react";
 import { createBrowserRouter, RouteObject } from "react-router-dom";
 import Layout from "@/components/Layout";
-import Home from "@/page/home";
-import Blog from "@/page/blog";
+
+const Home = React.lazy(() => import("@/page/home"));
+const Blog = React.lazy(() => import("@/page/blog"));
 
 const route: RouteObject[] = [
   {
     path: "/",
-    element: <Layout />,
+    element: (
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <Layout />
+      </Suspense>
+    ),
     children: [
       {
         index: true,

@@ -6,8 +6,10 @@ declare namespace API {
 
   type list = {
     id: number;
-    name: string;
+    title: string;
     content: string;
-    isFinish: boolean;
+    createdTime: number;
+    lastUpdate: number;
+    // isFinish: boolean;
   };
 }
