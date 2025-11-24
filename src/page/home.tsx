@@ -1,73 +1,59 @@
-import useCountStore from "@/store/countStore";
-import useListStore from "@/store/listStore";
-import { Checkbox, Input, Textarea } from "@mantine/core";
-import { useEffect, useState } from "react";
+import one from "@/assets/1.jpg";
+import two from "@/assets/6.jpg";
+import { Image } from "@mantine/core";
+import { ArrowRight } from "phosphor-react";
 
 const Home = () => {
-  const count = useCountStore((state) => state.count);
-  const addCount = useCountStore((state) => state.addCount);
-  const decCount = useCountStore((state) => state.decCount);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const fetchList = useListStore((state) => state.fetchList);
-  const list = useListStore((state) => state.list);
-  const addItem = useListStore((state) => state.addItem);
-  const delItem = useListStore((state) => state.delItem);
-  // const updateItem = useListStore((state) => state.updateItem);
-  // const randomId = () => Math.floor(Math.random() * 100000);
-
-  useEffect(() => {
-    fetchList();
-  }, []);
-
   return (
     <>
-      <p>{count}</p>
-      <button onClick={addCount}>addCount</button>
-      <button onClick={decCount}>decCount</button>
-      <ul>
-        {list.map((item) => (
-          <li key={item.id}>
-            {/* <Checkbox
-              checked={item.isFinish}
-              onChange={() => updateItem(item.id)}
-            ></Checkbox> */}
-            <p>id:{item.id}</p>
-            <p>title:{item.title}</p>
-            <p>content:{item.content}</p>
-            <button onClick={() => delItem(item.id)}>delItem</button>
-          </li>
-        ))}
-      </ul>
-      <form>
-        <p>title:</p>
-        <Input
-          name="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <p>content:</p>
-        <Textarea
-          name="content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        />
-        <button
-          type="button"
-          onClick={() => {
-            addItem({
-              // id: Number(randomId()),
-              title: title,
-              content: content,
-              // isFinish: false,
-            });
-            setTitle("");
-            setContent("");
-          }}
-        >
-          addItem
-        </button>
-      </form>
+      <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 mdOnly:gap-x-4 mdOnly:gap-y-6">
+        <div className="relative h-fit">
+          <Image src={one} radius="lg" className="blur-[0px]" />
+          <div className="absolute inset-0 p-5 flex items-center">
+            <span className="flex-1 text-white text-xl font-bold truncate text-balance">
+              123666666666666666666666555555555555555555555555555555555555555555555555555555566666666666456
+            </span>
+            <ArrowRight size={20} color="white" weight="bold" />
+          </div>
+        </div>
+        <div className="relative h-fit">
+          <Image src={one} radius="lg" className="blur-[0.5px]" />
+          <div className="absolute inset-0 p-5 flex items-center">
+            <span className="flex-1 text-white text-xl font-bold truncate text-balance">
+              123666666666666666 hdbsuinbf 55dvses 55fdvrmviodrrmv bgvbzefb
+              55555566666666666456
+            </span>
+            <ArrowRight size={20} color="white" weight="bold" />
+          </div>
+        </div>
+        <div className="relative h-fit">
+          <Image src={one} radius="lg" className="blur-[1px]" />
+          <div className="absolute inset-0 p-5 flex items-center">
+            <span className="flex-1 text-white text-xl font-bold truncate text-balance">
+              123666666666666666666666555555555555555555555555555555555555555555555555555555566666666666456
+            </span>
+            <ArrowRight size={20} color="white" weight="bold" />
+          </div>
+        </div>
+        <div className="relative h-fit">
+          <Image src={one} radius="lg" className="blur-[1.5px]" />
+          <div className="absolute inset-0 p-5 flex items-center">
+            <span className="flex-1 text-white text-xl font-bold truncate text-balance">
+              123666666666666666666666555555555555555555555555555555555555555555555555555555566666666666456
+            </span>
+            <ArrowRight size={20} color="white" weight="bold" />
+          </div>
+        </div>
+        <div className="relative h-fit">
+          <Image src={one} radius="lg" className="blur-[2px]" />
+          <div className="absolute inset-0 p-5 flex items-center">
+            <span className="flex-1 text-white text-xl font-bold truncate text-balance">
+              123666666666666666666666555555555555555555555555555555555555555555555555555555566666666666456
+            </span>
+            <ArrowRight size={20} color="white" weight="bold" />
+          </div>
+        </div>
+      </div>
     </>
   );
 };

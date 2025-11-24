@@ -14,15 +14,6 @@ import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 const Layout = () => {
-  const imgList = [
-    "/assets/1.jpg",
-    "/assets/2.jpg",
-    "/assets/3.jpg",
-    "/assets/4.jpg",
-    "/assets/5.jpg",
-    "/assets/6.jpg",
-    "/assets/光佑此间.jpg",
-  ];
   const navigator = useNavigate();
   const [opened, { toggle }] = useDisclosure();
   const { colorScheme, setColorScheme, clearColorScheme } =
@@ -67,7 +58,7 @@ const Layout = () => {
           <AppShell.Header>
             <Group h="100%" justify="space-between" className="px-5 lg:px-28">
               <Text>Lynn的网站</Text>
-              <Group visibleFrom="sm" gap={14}>
+              <Group visibleFrom="xs" gap={14}>
                 {TabList}
                 <Switch
                   size="md"
@@ -88,8 +79,8 @@ const Layout = () => {
               <Burger
                 opened={opened}
                 onClick={toggle}
-                hiddenFrom="sm"
-                size="sm"
+                hiddenFrom="xs"
+                size="xs"
               />
             </Group>
           </AppShell.Header>

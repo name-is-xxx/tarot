@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 
 const Home = React.lazy(() => import("@/page/home"));
 const Blog = React.lazy(() => import("@/page/blog"));
+const AddBlog = React.lazy(() => import("@/page/addBlog"));
 
 const route: RouteObject[] = [
   {
@@ -21,6 +22,10 @@ const route: RouteObject[] = [
       {
         path: "/blog",
         element: <Blog />,
+      },
+      {
+        path: "/add",
+        element: <AddBlog />,
       },
     ],
   },

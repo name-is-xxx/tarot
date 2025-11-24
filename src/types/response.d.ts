@@ -6,10 +6,13 @@ declare namespace API {
 
   type list = {
     id: number;
+    frontImg: string;
+    author: string;
     title: string;
     content: string;
+    tags: string[];
+    category: string[];
     createdTime: number;
     lastUpdate: number;
-    // isFinish: boolean;
   };
 }

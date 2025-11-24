@@ -1,55 +1,18 @@
-import { Card, Text, Image } from "@mantine/core";
-// 32 48
+import { Card, Text, Image, Badge, Button } from "@mantine/core";
+import { ArrowUpRight } from "phosphor-react";
+import { useNavigate } from "react-router-dom";
+
 const Blog = () => {
-  const tags = [
-    {
-      id: "1",
-      name: "001",
-      createTime: "xxxxx",
-      isDelete: false,
-      deleteTime: "",
-      describe: "this is the one",
-    },
-    {
-      id: "2",
-      name: "002",
-      createTime: "xxxxx",
-      isDelete: false,
-      deleteTime: "",
-      describe: "this is the 2",
-    },
-    {
-      id: "3",
-      name: "003",
-      createTime: "xxxxx",
-      isDelete: false,
-      deleteTime: "",
-      describe: "this is the 3",
-    },
-    {
-      id: "4",
-      name: "004",
-      createTime: "xxxxx",
-      isDelete: false,
-      deleteTime: "",
-      describe: "this is the 3+1",
-    },
-    {
-      id: "5",
-      name: "005",
-      createTime: "xxxxx",
-      isDelete: false,
-      deleteTime: "",
-      describe: "this is the 3+2",
-    },
-  ];
+  const navigate = useNavigate();
   const list = [
     {
       id: "1",
       imgUrl:
         "https://ww2.sinaimg.cn/mw690/0079ZOJxgy1ht9jpqq8oaj30j60pgtfm.jpg",
-      title: "001",
-      content: "111",
+      title:
+        "001 001 0010000000000000000001111111111111111111111122222222222222",
+      content:
+        "Like to know the secrets of transforming a 2-14 team into a 3x Super Bowl winning Dynasty?",
       createTime: "xxxxx",
       tag: [1, 2, 3],
       isDelete: false,
@@ -138,23 +101,48 @@ const Blog = () => {
       <Text
         ta="center"
         fw={600}
-        className="w-full border-y-2 text-7xl md:text-8xl lg:text-9xl"
+        className="w-full border-y-2 text-7xl md:text-8xl lg:text-9xl mb-5 xs:mb-8"
       >
         THE BLOG
       </Text>
-      <div className="bg-red-500 flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 mdOnly:gap-x-4 mdOnly:gap-y-6">
+
+      <Button onClick={() => navigate("/add")} className="mb-5 xs:mb-8">
+        add blog
+      </Button>
+
+      <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 mdOnly:gap-x-4 mdOnly:gap-y-6">
         {list.map((item) => (
           <>
-            <Card className="w-60">
-              <Card.Section>
-                <Image src={item.imgUrl} alt="Norway" />
+            <Card padding={0} className="gap-6">
+              <Card.Section className="h-60">
+                <Image
+                  src={item.imgUrl}
+                  alt="cover image"
+                  className="h-full object-cover"
+                />
               </Card.Section>
-              <div>
-                <Text fw={500}>{item.title}</Text>
+              <div className="space-y-3 flex-1">
+                <Text
+                  size="lg"
+                  className="font-bold text-[var(--mantine-color-grape-7)]"
+                >
+                  {item.createTime}
+                </Text>
+                <div className="flex justify-between">
+                  <span className="text-xl font-bold truncate text-balance flex-1">
+                    {item.title}
+                  </span>
+                  <ArrowUpRight size={20} weight="bold" />
+                </div>
+                <Text size="lg" className="text-[var(--mantine-color-dimmed)]">
+                  {item.content}
+                </Text>
               </div>
-              <Text size="sm" c="dimmed">
-                {item.content}
-              </Text>
+              <div className="flex gap-2 items-center">
+                <Badge color="blue">Badge</Badge>
+                <Badge color="blue">Badge</Badge>
+                <Badge color="blue">Badge</Badge>
+              </div>
             </Card>
           </>
         ))}
