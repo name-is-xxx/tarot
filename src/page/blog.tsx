@@ -97,7 +97,7 @@ const Blog = () => {
     },
   ];
   return (
-    <>
+    <div className="overflow-hidden">
       <Text
         ta="center"
         fw={600}
@@ -112,42 +112,40 @@ const Blog = () => {
 
       <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 mdOnly:gap-x-4 mdOnly:gap-y-6">
         {list.map((item) => (
-          <>
-            <Card padding={0} className="gap-6">
-              <Card.Section className="h-60">
-                <Image
-                  src={item.imgUrl}
-                  alt="cover image"
-                  className="h-full object-cover"
-                />
-              </Card.Section>
-              <div className="space-y-3 flex-1">
-                <Text
-                  size="lg"
-                  className="font-bold text-[var(--mantine-color-grape-7)]"
-                >
-                  {item.createTime}
-                </Text>
-                <div className="flex justify-between">
-                  <span className="text-xl font-bold truncate text-balance flex-1">
-                    {item.title}
-                  </span>
-                  <ArrowUpRight size={20} weight="bold" />
-                </div>
-                <Text size="lg" className="text-[var(--mantine-color-dimmed)]">
-                  {item.content}
-                </Text>
+          <Card key={item.id} padding={0} className="gap-6">
+            <Card.Section className="h-60">
+              <Image
+                src={item.imgUrl}
+                alt="cover image"
+                className="h-full object-cover"
+              />
+            </Card.Section>
+            <div className="space-y-3 flex-1">
+              <Text
+                size="lg"
+                className="font-bold text-[var(--mantine-color-grape-7)]"
+              >
+                {item.createTime}
+              </Text>
+              <div className="flex justify-between">
+                <span className="text-xl font-bold truncate text-balance flex-1">
+                  {item.title}
+                </span>
+                <ArrowUpRight size={20} weight="bold" />
               </div>
-              <div className="flex gap-2 items-center">
-                <Badge color="blue">Badge</Badge>
-                <Badge color="blue">Badge</Badge>
-                <Badge color="blue">Badge</Badge>
-              </div>
-            </Card>
-          </>
+              <Text size="lg" className="text-[var(--mantine-color-dimmed)]">
+                {item.content}
+              </Text>
+            </div>
+            <div className="flex gap-2 items-center">
+              <Badge color="blue">Badge</Badge>
+              <Badge color="blue">Badge</Badge>
+              <Badge color="blue">Badge</Badge>
+            </div>
+          </Card>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 export default Blog;

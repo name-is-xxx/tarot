@@ -11,29 +11,30 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import { Moon, Sun } from "phosphor-react";
 import { useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 const Layout = () => {
   const navigator = useNavigate();
+  const location = useLocation();
   const [opened, { toggle }] = useDisclosure();
-  const { colorScheme, setColorScheme, clearColorScheme } =
-    useMantineColorScheme();
-  const [page, setPage] = useState(1);
+  const { colorScheme, setColorScheme } = useMantineColorScheme();
+  const [page, setPage] = useState(location.pathname);
+  console.log(location);
 
   const TabList = [
     { id: 1, title: "Home", href: "/" },
     { id: 2, title: "Blog", href: "/blog" },
-    { id: 3, title: "Contacts", href: "#" },
-    { id: 4, title: "Support", href: "#" },
-  ].map((item, index) => (
+    { id: 3, title: "Contacts", href: "/contacts" },
+    { id: 4, title: "Support", href: "/support" },
+  ].map((item) => (
     <UnstyledButton
-      key={index}
+      key={item.id}
       onClick={() => {
-        setPage(item.id);
+        setPage(item.href);
         navigator(item.href);
       }}
       className={`${
-        page === item.id
+        page == item.href
           ? "bg-[var(--mantine-color-text)] text-[var(--mantine-color-body)]"
           : "bg-[var(--mantine-color-body)] text-[var(--mantine-color-text)]"
       } p-2 rounded-xl`}
@@ -103,8 +104,10 @@ const Layout = () => {
           </AppShell.Navbar>
 
           <AppShell.Main className="flex flex-col">
-            <Outlet />
-            <div className="py-4 text-center">This is footer</div>
+            <div className="flex-1">
+              <Outlet />
+            </div>
+            <footer className="py-4 text-center">This is footer</footer>
           </AppShell.Main>
         </AppShell>
       </div>
