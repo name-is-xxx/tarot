@@ -1,9 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { MantineProvider } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
 import { RouterProvider } from "react-router-dom";
 import router from "./route";
 import "@mantine/core/styles.css";
+import "@mantine/dropzone/styles.css";
+import "@mantine/notifications/styles.css";
 import "./App.css";
 import { theme } from "./theme";
 // import reportWebVitals from "./reportWebVitals";
@@ -12,6 +15,7 @@ const App = () => {
   return (
     <React.StrictMode>
       <MantineProvider theme={theme} defaultColorScheme="light">
+        <Notifications position="top-center" />
         <RouterProvider router={router} />
       </MantineProvider>
     </React.StrictMode>

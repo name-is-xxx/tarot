@@ -7,6 +7,7 @@ const Blog = React.lazy(() => import("@/page/blog"));
 const Contacts = React.lazy(() => import("@/page/contacts"));
 const Support = React.lazy(() => import("@/page/support"));
 const AddBlog = React.lazy(() => import("@/page/addBlog"));
+const Detail = React.lazy(() => import("@/page/detail"));
 
 const route: RouteObject[] = [
   {
@@ -24,6 +25,10 @@ const route: RouteObject[] = [
       {
         path: "/blog",
         element: <Blog />,
+      },
+      {
+        path: `/:id`,
+        element: <Detail />,
       },
       {
         path: "/contacts",
