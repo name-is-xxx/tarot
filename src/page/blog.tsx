@@ -71,7 +71,10 @@ const Blog = () => {
                 />
               </Card.Section>
               <div className="space-y-3 flex-1 cursor-default">
-                <Text size="sm" className="font-bold text-purple-700">
+                <Text
+                  size="sm"
+                  className="font-bold text-[var(--mantine-color-grape-7)]"
+                >
                   {dateTrans(item.lastUpdate)}
                 </Text>
                 <div className="flex justify-between items-end">
@@ -80,7 +83,7 @@ const Blog = () => {
                   </span>
                   <ArrowUpRight size={20} weight="bold" />
                 </div>
-                <div className="line-clamp-2 text-slate-400">
+                <div className="line-clamp-2 text-[var(--mantine-color-gray-6)]">
                   {item.content}
                 </div>
               </div>

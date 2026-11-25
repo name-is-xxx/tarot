@@ -55,7 +55,9 @@ const Layout = () => {
         navigator(item.href);
       }}
       className={`${
-        page == item.href ? "bg-black text-white" : "bg-transparent text-black"
+        page == item.href
+          ? "bg-[var(--mantine-color-text)] text-[var(--mantine-color-body)]"
+          : "bg-transparent text-[var(--mantine-color-text)]"
       } p-2 rounded-xl`}
     >
       {item.title}
@@ -153,12 +155,7 @@ const Layout = () => {
             </footer>
           </AppShell.Main>
         </AppShell>
-        <Modal
-          opened={loginOpened}
-          onClose={closeLogin}
-          title="登录"
-          centered
-        >
+        <Modal opened={loginOpened} onClose={closeLogin} title="登录" centered>
           <form onSubmit={handleLoginSubmit} className="flex flex-col gap-4">
             <TextInput
               label="用户名"

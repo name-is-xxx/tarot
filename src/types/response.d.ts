@@ -31,6 +31,6 @@ declare namespace API {
     fileName: string;
     contentType: string;
     fileSize: number;
-    createTime: string;
+    createdTime: string;
   };
 }

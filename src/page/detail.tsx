@@ -127,7 +127,7 @@ const Detail = () => {
           <button
             type="button"
             onClick={() => setRetryCount((count) => count + 1)}
-            className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md bg-[var(--mantine-color-grape-6)] px-4 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[var(--mantine-color-grape-7)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--mantine-color-grape-6)]"
+            className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-md bg-[var(--mantine-color-text)] px-4 text-sm font-bold text-[var(--mantine-color-body)] transition-colors duration-300 hover:bg-[var(--mantine-color-dark-7)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--mantine-color-grape-7)]"
           >
             <ArrowClockwise size={18} aria-hidden="true" />
             <span>Try again</span>
@@ -144,10 +144,12 @@ const Detail = () => {
         <h1 className="text-balance break-words text-4xl font-semibold leading-tight text-[var(--mantine-color-text)] sm:text-5xl">
           {article.title}
         </h1>
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-gray-400">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-[var(--mantine-color-gray-6)]">
           <span className="space-x-1">
             <span>By</span>
-            <span className="font-bold text-black">{article.author}</span>
+            <span className="font-bold text-[var(--mantine-color-text)]">
+              {article.author}
+            </span>
           </span>
           <span aria-hidden="true">|</span>
           <span className="space-x-1">
